@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:copro_admin_web/models/notice_detail_model.dart';
 import 'package:copro_admin_web/models/notice_list_model.dart';
+import 'package:copro_admin_web/utils/env.dart';
 import 'package:dio/dio.dart';
 import 'package:copro_admin_web/models/token_model.dart';
 import 'package:flutter/material.dart';
@@ -8,8 +9,9 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class NoticeServices {
-  final String apiBaseUrl =
-      dotenv.env['API_BASE_URL'] ?? 'default_value_if_not_present';
+  // final String apiBaseUrl =
+  //     dotenv.env['API_BASE_URL'] ?? 'default_value_if_not_present';
+  String apiBaseUrl = Env().apiBaseUrl;
 
   /// Get Notice List API 공지사항 리스트를 가져옵니다.
   Future<NoticeListModel> getNoticeList() async {
@@ -27,10 +29,8 @@ class NoticeServices {
     );
 
     if (response.statusCode == 200) {
-      debugPrint(json.encode(response.data));
       return NoticeListModel.fromJson(response.data);
     } else {
-      debugPrint(response.statusMessage);
       return NoticeListModel.fromJson(response.data);
     }
   }
@@ -50,7 +50,6 @@ class NoticeServices {
     );
 
     if (response.statusCode == 200) {
-      debugPrint(json.encode(response.data));
       return NoticeDetailModel.fromJson(response.data);
     } else {
       debugPrint(response.statusMessage);
@@ -78,7 +77,7 @@ class NoticeServices {
     );
 
     if (response.statusCode == 200) {
-      debugPrint(json.encode(response.data));
+      debugPrint("success");
     } else {
       debugPrint(response.statusMessage);
     }
@@ -104,7 +103,7 @@ class NoticeServices {
     );
 
     if (response.statusCode == 200) {
-      debugPrint(json.encode(response.data));
+      debugPrint("success");
     } else {
       debugPrint(response.statusMessage);
     }
@@ -128,7 +127,7 @@ class NoticeServices {
     );
 
     if (response.statusCode == 200) {
-      debugPrint(json.encode(response.data));
+      debugPrint("success");
     } else {
       debugPrint(response.statusMessage);
     }

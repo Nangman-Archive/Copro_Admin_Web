@@ -1,4 +1,5 @@
 import 'package:copro_admin_web/services/login_services.dart';
+import 'package:copro_admin_web/utils/env.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:go_router/go_router.dart';
@@ -16,10 +17,11 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  static final String signKey =
-      dotenv.env['GOOGLE_SIGNIN_KEY'] ?? 'default_value_if_not_present';
+  static String signKey = Env().clientId;
+  // static final String signKey =
+  //     dotenv.env['GOOGLE_SIGNIN_KEY'] ?? 'default_value_if_not_present';
   final GoogleSignIn googleSignIn = GoogleSignIn(
-    clientId: signKey,
+    clientId: '$signKey',
   );
   @override
   void initState() {
@@ -38,7 +40,6 @@ class _LoginScreenState extends State<LoginScreen> {
         final GoogleSignInAuthentication googleSignInAuthentication =
             await googleSignInAccount.authentication;
 
-        debugPrint("ID Token: ${googleSignInAuthentication.idToken}");
         bool signedIn = await LoginServices()
             .getAccessToken(googleSignInAuthentication.idToken);
         if (signedIn) {
