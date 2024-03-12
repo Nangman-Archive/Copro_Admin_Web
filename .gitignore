@@ -95,3 +95,4 @@ coverage/
 
 # End of https://www.toptal.com/developers/gitignore/api/flutter,dart
 lib/utils/env.dart
+.firebase/hosting.YnVpbGQvd2Vi.cache
