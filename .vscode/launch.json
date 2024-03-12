@@ -7,7 +7,8 @@
         {
             "name": "copro_admin_web",
             "request": "launch",
-            "type": "dart"
+            "type": "dart",
+            "args": ["-d", "chrome","--web-port", "5050"],
         },
         {
             "name": "copro_admin_web (profile mode)",
